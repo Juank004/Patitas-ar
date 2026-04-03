@@ -4,21 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Fundación Patitas — Adopta en AR</title>
-
-  <!-- Google Model Viewer — AR nativo en iOS y Android -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,500;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --cream:   #FFF8F0;
-      --warm:    #FF6B35;
-      --gold:    #FFB830;
-      --brown:   #3D1F00;
-      --soft:    #FFE5D0;
-      --green:   #2ECC71;
+      --cream:  #FFF8F0;
+      --warm:   #FF6B35;
+      --gold:   #FFB830;
+      --brown:  #3D1F00;
+      --soft:   #FFE5D0;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,10 +24,8 @@
       font-family: 'DM Sans', sans-serif;
       color: var(--brown);
       min-height: 100svh;
-      overflow-x: hidden;
     }
 
-    /* ── HEADER ── */
     header {
       padding: 20px 24px 0;
       display: flex;
@@ -56,6 +50,7 @@
       color: var(--warm);
       line-height: 1;
     }
+
     .logo-text span {
       display: block;
       font-size: 0.75rem;
@@ -65,7 +60,6 @@
       font-family: 'DM Sans', sans-serif;
     }
 
-    /* ── DOG CARD ── */
     .dog-card {
       margin: 20px 20px 0;
       background: white;
@@ -89,7 +83,6 @@
       z-index: 10;
     }
 
-    /* ── MODEL VIEWER ── */
     model-viewer {
       width: 100%;
       height: 360px;
@@ -97,14 +90,9 @@
       --poster-color: transparent;
     }
 
-    model-viewer::part(default-ar-button) {
-      display: none; /* usamos nuestro propio botón */
-    }
+    model-viewer::part(default-ar-button) { display: none; }
 
-    /* ── DOG INFO ── */
-    .dog-info {
-      padding: 20px 24px;
-    }
+    .dog-info { padding: 20px 24px; }
 
     .dog-name {
       font-family: 'Fredoka', sans-serif;
@@ -137,7 +125,6 @@
       opacity: 0.7;
     }
 
-    /* ── BOTÓN AR ── */
     .ar-btn {
       display: flex;
       align-items: center;
@@ -154,21 +141,13 @@
       font-size: 1.2rem;
       font-weight: 600;
       cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s;
       box-shadow: 0 4px 20px rgba(255,107,53,0.35);
       text-decoration: none;
+      transition: transform 0.15s;
     }
 
-    .ar-btn:active {
-      transform: scale(0.97);
-      box-shadow: 0 2px 10px rgba(255,107,53,0.25);
-    }
+    .ar-btn:active { transform: scale(0.97); }
 
-    .ar-btn .ar-icon {
-      font-size: 1.4rem;
-    }
-
-    /* ── CÓDIGO ROBLOX ── */
     .code-section {
       margin: 16px 20px;
       background: var(--brown);
@@ -213,7 +192,7 @@
       white-space: nowrap;
     }
 
-    .copy-btn:active, .copy-btn.copied {
+    .copy-btn.copied {
       background: var(--gold);
       color: var(--brown);
     }
@@ -225,9 +204,8 @@
       line-height: 1.4;
     }
 
-    /* ── ROBLOX BADGE ── */
     .roblox-section {
-      margin: 0 20px 20px;
+      margin: 0 20px 30px;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -236,46 +214,31 @@
       padding: 14px 18px;
     }
 
-    .roblox-icon {
-      font-size: 2rem;
-    }
-
-    .roblox-text {
-      font-size: 0.85rem;
-      line-height: 1.4;
-    }
-
+    .roblox-icon { font-size: 2rem; }
+    .roblox-text { font-size: 0.85rem; line-height: 1.4; }
     .roblox-text strong {
       font-weight: 600;
       display: block;
       color: var(--warm);
     }
 
-    /* ── AR NO SOPORTADO ── */
-    .ar-fallback {
+    .error-screen {
       display: none;
-      margin: 0 20px;
-      background: #f0f0f0;
-      border-radius: 16px;
-      padding: 16px;
       text-align: center;
-      font-size: 0.85rem;
-      opacity: 0.7;
+      padding: 60px 30px;
     }
 
-    /* ── DOTS DECORATIVOS ── */
-    .dots {
-      position: fixed;
-      top: 0; right: 0;
-      width: 200px; height: 200px;
-      background-image: radial-gradient(var(--soft) 2px, transparent 2px);
-      background-size: 20px 20px;
-      opacity: 0.6;
-      pointer-events: none;
-      z-index: 0;
+    .error-screen .icon { font-size: 4rem; margin-bottom: 16px; }
+
+    .error-screen h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.5rem;
+      color: var(--warm);
+      margin-bottom: 8px;
     }
 
-    /* ── TOAST ── */
+    .error-screen p { opacity: 0.6; font-size: 0.9rem; line-height: 1.6; }
+
     .toast {
       position: fixed;
       bottom: 30px;
@@ -292,16 +255,11 @@
       white-space: nowrap;
     }
 
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
-    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
   </style>
 </head>
 <body>
 
-<div class="dots"></div>
-
-<!-- HEADER -->
 <header>
   <div class="logo-paw">🐾</div>
   <div class="logo-text">
@@ -310,15 +268,11 @@
   </div>
 </header>
 
-<!-- TARJETA DEL PERRO -->
-<div class="dog-card">
+<div class="dog-card" id="dogCard">
   <div class="dog-badge">🏠 En adopción</div>
-
-  <!-- MODEL VIEWER con AR automático -->
   <model-viewer
     id="dogViewer"
-    src="Tricolor1.glb"
-    alt="Perro Tricolor en realidad aumentada"
+    alt="Perro en realidad aumentada"
     ar
     ar-modes="webxr scene-viewer quick-look"
     camera-controls
@@ -328,115 +282,149 @@
     shadow-intensity="1"
     exposure="1.1"
     environment-image="neutral"
-    poster=""
     loading="eager"
-  >
-  </model-viewer>
-
+  ></model-viewer>
   <div class="dog-info">
-    <div class="dog-name">Tricolor</div>
-    <div class="dog-tags">
-      <span class="tag">🐕 Mestizo</span>
-      <span class="tag">⚡ Activo</span>
-      <span class="tag">❤️ Cariñoso</span>
-      <span class="tag">👶 Bueno con niños</span>
-    </div>
-    <p class="dog-desc">
-      Tricolor llegó a la fundación después de ser encontrado en las calles.
-      Es un perro alegre, juguetón y lleno de amor. Busca una familia que le dé
-      el hogar que merece. ¡Escanea y conócelo en tu mundo!
-    </p>
+    <div class="dog-name" id="dogName">Cargando...</div>
+    <div class="dog-tags" id="dogTags"></div>
+    <p class="dog-desc" id="dogDesc"></p>
   </div>
 </div>
 
-<!-- BOTÓN AR -->
 <a class="ar-btn" id="arButton" href="#" onclick="launchAR(event)">
-  <span class="ar-icon">📱</span>
-  Ver a Tricolor en tu mundo
+  <span>📱</span>
+  <span id="arBtnText">Ver en tu mundo</span>
 </a>
 
-<div class="ar-fallback" id="arFallback">
-  Tu dispositivo no soporta AR. Puedes girar el modelo con el dedo arriba 👆
-</div>
-
-<!-- CÓDIGO ROBLOX -->
-<div class="code-section">
+<div class="code-section" id="codeSection">
   <div class="code-label">🎮 Tu código de Roblox</div>
   <div class="code-row">
-    <div class="code-display" id="codeDisplay">TRICOLOR-4821</div>
+    <div class="code-display" id="codeDisplay">—</div>
     <button class="copy-btn" id="copyBtn" onclick="copyCode()">Copiar</button>
   </div>
-  <div class="code-hint">
-    Ingresa este código en el juego "City Pet Vale" para desbloquear
-    a Tricolor como tu mascota virtual 🐾
-  </div>
+  <div class="code-hint" id="codeHint"></div>
 </div>
 
-<!-- ROBLOX INFO -->
-<div class="roblox-section">
+<div class="roblox-section" id="robloxSection">
   <div class="roblox-icon">🎮</div>
   <div class="roblox-text">
     <strong>¿Cómo usar el código?</strong>
-    Abre Roblox → busca "City Pet Vale" → toca el botón de código → ingresa TRICOLOR-4821
+    Abre Roblox → busca "City Pet Vale" → toca el botón de código → ingrésalo
   </div>
 </div>
 
-<!-- TOAST -->
+<div class="error-screen" id="errorScreen">
+  <div class="icon">🐾</div>
+  <h2>Perrito no encontrado</h2>
+  <p>El código QR no corresponde a ningún perro registrado.<br>Contacta a la fundación para más información.</p>
+</div>
+
 <div class="toast" id="toast">✅ ¡Código copiado!</div>
 
 <script>
-  // ── Detectar soporte AR ──
-  const viewer = document.getElementById('dogViewer');
-  const arBtn  = document.getElementById('arButton');
-  const fallback = document.getElementById('arFallback');
+  // ══════════════════════════════════════════════════════
+  // BASE DE DATOS DE PERROS
+  // Para agregar un perro nuevo:
+  // 1. Sube el archivo .glb a GitHub en la misma carpeta
+  // 2. Copia un bloque y cambia los datos
+  // 3. El "id" (clave) define la URL: ?perro=ID
+  // ══════════════════════════════════════════════════════
+  const DOGS = {
 
-  viewer.addEventListener('load', () => {
-    // Verificar si AR está disponible
-    if (!viewer.canActivateAR) {
-      fallback.style.display = 'block';
-      arBtn.innerHTML = '<span class="ar-icon">🔄</span> Girar modelo 3D';
-      arBtn.onclick = (e) => {
-        e.preventDefault();
-        viewer.cameraOrbit = '0deg 75deg 2m';
-      };
-    }
-  });
+    "tricolor": {
+      name:  "Tricolor",
+      breed: "Mestizo",
+      code:  "TRICOLOR-4821",
+      model: "Tricolor1.glb",
+      tags:  ["🐕 Mestizo", "⚡ Activo", "❤️ Cariñoso", "👶 Bueno con niños"],
+      desc:  "Tricolor llegó a la fundación después de ser encontrado en las calles. Es un perro alegre, juguetón y lleno de amor. Busca una familia que le dé el hogar que merece.",
+    },
 
-  // ── Lanzar AR ──
-  function launchAR(e) {
-    e.preventDefault();
-    if (viewer.canActivateAR) {
-      viewer.activateAR();
-    }
+    // Ejemplo de cómo agregar más perros:
+    // "firulais": {
+    //   name:  "Firulais",
+    //   breed: "Labrador",
+    //   code:  "FIRULAIS-5923",
+    //   model: "Firulais.glb",       ← nombre exacto del archivo .glb subido a GitHub
+    //   tags:  ["🐕 Labrador", "🏃 Energético", "❤️ Leal"],
+    //   desc:  "Firulais es un labrador de 2 años muy juguetón que adora correr.",
+    // },
+
+    // "luna": {
+    //   name:  "Luna",
+    //   breed: "Beagle",
+    //   code:  "LUNA-3847",
+    //   model: "Luna.glb",
+    //   tags:  ["🐕 Beagle", "🌙 Tranquila", "🎵 Musical"],
+    //   desc:  "Luna es una beagle muy curiosa y tranquila. Le encanta la música.",
+    // },
+
+  };
+
+  // ── Cargar perro según URL ──
+  const params = new URLSearchParams(window.location.search);
+  const dogId  = (params.get('perro') || '').toLowerCase().trim();
+  const dog    = DOGS[dogId];
+
+  if (!dog) {
+    document.getElementById('dogCard').style.display      = 'none';
+    document.getElementById('arButton').style.display     = 'none';
+    document.getElementById('codeSection').style.display  = 'none';
+    document.getElementById('robloxSection').style.display = 'none';
+    document.getElementById('errorScreen').style.display  = 'block';
+  } else {
+    const viewer = document.getElementById('dogViewer');
+    viewer.setAttribute('src', dog.model);
+    viewer.setAttribute('alt', dog.name + ' en realidad aumentada');
+
+    document.getElementById('dogName').textContent     = dog.name;
+    document.getElementById('dogDesc').textContent     = dog.desc;
+    document.getElementById('codeDisplay').textContent = dog.code;
+    document.getElementById('arBtnText').textContent   = 'Ver a ' + dog.name + ' en tu mundo';
+    document.getElementById('codeHint').textContent    =
+      'Ingresa este código en City Pet Vale para desbloquear a ' + dog.name + ' como tu mascota virtual 🐾';
+
+    const tagsEl = document.getElementById('dogTags');
+    dog.tags.forEach(tag => {
+      const span       = document.createElement('span');
+      span.className   = 'tag';
+      span.textContent = tag;
+      tagsEl.appendChild(span);
+    });
+
+    viewer.addEventListener('load', () => {
+      if (!viewer.canActivateAR) {
+        document.getElementById('arBtnText').textContent = 'Girar modelo 3D';
+      }
+    });
   }
 
-  // ── Copiar código ──
+  function launchAR(e) {
+    e.preventDefault();
+    const viewer = document.getElementById('dogViewer');
+    if (viewer && viewer.canActivateAR) viewer.activateAR();
+  }
+
   function copyCode() {
-    const code = document.getElementById('codeDisplay').textContent;
-    const btn  = document.getElementById('copyBtn');
+    const code  = document.getElementById('codeDisplay').textContent;
+    const btn   = document.getElementById('copyBtn');
     const toast = document.getElementById('toast');
-
-    navigator.clipboard.writeText(code).then(() => {
-      btn.textContent = '¡Copiado!';
-      btn.classList.add('copied');
-      toast.classList.add('show');
-
-      setTimeout(() => {
-        btn.textContent = 'Copiar';
-        btn.classList.remove('copied');
-        toast.classList.remove('show');
-      }, 2000);
-    }).catch(() => {
-      // Fallback para navegadores sin clipboard API
+    navigator.clipboard.writeText(code).catch(() => {
       const el = document.createElement('textarea');
       el.value = code;
       document.body.appendChild(el);
       el.select();
       document.execCommand('copy');
       document.body.removeChild(el);
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2000);
     });
+    btn.textContent = '¡Copiado!';
+    btn.classList.add('copied');
+    toast.classList.add('show');
+    setTimeout(() => {
+      btn.textContent = 'Copiar';
+      btn.classList.remove('copied');
+      toast.classList.remove('show');
+    }, 2000);
   }
 </script>
 
